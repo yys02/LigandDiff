@@ -17,12 +17,16 @@ The easiest way to set up the environment is using the provided conda environmen
 git clone <repository-url>
 cd LigandDiff
 
-# Create and activate the environment
-conda env create -f environment.yml
+# For Ubuntu 22.04 + CUDA 12.4 (recommended)
+./setup_ubuntu2204.sh
 conda activate liganddiff
 
-# Or use the automated setup script
+# Or use the general setup script
 ./setup_environment.sh
+conda activate liganddiff
+
+# Or manual setup
+conda env create -f environment.yml
 conda activate liganddiff
 ```
 

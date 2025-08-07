@@ -6,9 +6,10 @@ I have successfully analyzed the LigandDiff project and created a comprehensive 
 
 ### 1. Core Environment Files
 
-- **`environment.yml`** - Complete conda environment configuration with all dependencies
+- **`environment.yml`** - Complete conda environment configuration with all dependencies (optimized for Ubuntu 22.04 + CUDA 12.4)
 - **`requirements.txt`** - Alternative pip-based requirements (for reference)
 - **`setup_environment.sh`** - Automated setup script
+- **`setup_ubuntu2204.sh`** - Ubuntu 22.04 + CUDA 12.4 optimized setup script
 
 ### 2. Documentation
 
@@ -26,8 +27,8 @@ I have successfully analyzed the LigandDiff project and created a comprehensive 
 Based on code analysis, the project requires:
 
 ### Core ML Framework
-- **PyTorch 1.12+** - Deep learning framework
-- **PyTorch Lightning 1.8+** - Training framework
+- **PyTorch 2.0+** - Deep learning framework (CUDA 12.1 support for Ubuntu 22.04)
+- **PyTorch Lightning 2.0+** - Training framework
 - **PyTorch Geometric 2.2+** - Graph neural networks
 - **PyTorch Scatter/Cluster/Sparse** - Geometric operations
 
@@ -50,10 +51,23 @@ Based on code analysis, the project requires:
 
 ## Quick Start Guide
 
-### Option 1: Automated Setup (Recommended)
+### Option 1: Ubuntu 22.04 + CUDA 12.4 Setup (Recommended)
 
 ```bash
-# Run the setup script
+# Run the Ubuntu-optimized setup script
+./setup_ubuntu2204.sh
+
+# Activate the environment
+conda activate liganddiff
+
+# Validate the setup
+python validate_environment.py
+```
+
+### Option 2: General Setup
+
+```bash
+# Run the general setup script
 ./setup_environment.sh
 
 # Activate the environment

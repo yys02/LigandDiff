@@ -8,8 +8,9 @@ This guide will help you set up the environment for running the LigandDiff model
    - Download from: https://docs.conda.io/en/latest/miniconda.html
    - Or install Anaconda: https://www.anaconda.com/products/distribution
 
-2. **CUDA (Optional)**: For GPU acceleration, install CUDA compatible with PyTorch.
-   - Check compatibility: https://pytorch.org/get-started/locally/
+2. **CUDA 12.4**: The environment is optimized for CUDA 12.4 on Ubuntu 22.04.
+   - PyTorch 2.0+ with CUDA 12.1 support is included
+   - If you have a different CUDA version, see troubleshooting section
 
 ## Quick Setup
 
@@ -43,8 +44,8 @@ The `environment.yml` file includes:
 
 ### Core Dependencies
 - **Python 3.9**: Base Python version
-- **PyTorch 1.12+**: Deep learning framework
-- **PyTorch Lightning 1.8+**: Training framework
+- **PyTorch 2.0+**: Deep learning framework (CUDA 12.1 support)
+- **PyTorch Lightning 2.0+**: Training framework
 - **PyTorch Geometric 2.2+**: Graph neural networks
 
 ### Chemistry Libraries
@@ -96,12 +97,19 @@ python -c "import pytorch_lightning; print(f'PyTorch Lightning version: {pytorch
 
 1. **CUDA Issues**: If you encounter CUDA-related errors, try:
    ```bash
+   # For CUDA 12.4 (recommended for Ubuntu 22.04)
+   conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
+   
+   # For CUDA 11.8 (alternative)
    conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
    ```
 
 2. **PyTorch Geometric Installation**: If PyG installation fails:
    ```bash
    pip install torch-geometric
+   # For CUDA 12.1 (Ubuntu 22.04)
+   pip install torch-scatter torch-sparse torch-cluster torch-spline-conv -f https://data.pyg.org/whl/torch-2.0.0+cu121.html
+   # For CUDA 11.8 (alternative)
    pip install torch-scatter torch-sparse torch-cluster torch-spline-conv -f https://data.pyg.org/whl/torch-2.0.0+cu118.html
    ```
 
@@ -151,10 +159,32 @@ python generate.py --model path/to/model.ckpt --complex path/to/complex.xyz --ou
 
 ## System Requirements
 
+- **OS**: Ubuntu 22.04 (optimized), Linux, macOS, or Windows (with WSL for Windows)
 - **RAM**: Minimum 8GB, recommended 16GB+
 - **Storage**: At least 10GB free space
-- **GPU**: Optional but recommended for faster training (NVIDIA GPU with CUDA support)
-- **OS**: Linux, macOS, or Windows (with WSL for Windows)
+- **GPU**: Optional but recommended for faster training (NVIDIA GPU with CUDA 12.4 support)
+
+## Ubuntu 22.04 + CUDA 12.4 Specific Setup
+
+This environment is specifically optimized for Ubuntu 22.04 with CUDA 12.4:
+
+### CUDA Installation (if not already installed)
+```bash
+# Check if CUDA is installed
+nvidia-smi
+
+# If not installed, install CUDA 12.4
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
+sudo dpkg -i cuda-keyring_1.0-1_all.deb
+sudo apt-get update
+sudo apt-get install cuda-12-4
+```
+
+### Environment Optimization
+The `environment.yml` file includes:
+- PyTorch 2.0+ with CUDA 12.1 support (compatible with CUDA 12.4)
+- NVIDIA channel for optimized packages
+- PyTorch Geometric with CUDA 12.1 wheels
 
 ## Support
 

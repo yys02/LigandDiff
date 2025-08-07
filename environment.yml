@@ -1,17 +1,19 @@
 name: liganddiff
 channels:
   - pytorch
+  - nvidia
   - conda-forge
   - defaults
 dependencies:
   # Core Python
   - python=3.9
   
-  # PyTorch ecosystem
-  - pytorch>=1.12.0
+  # PyTorch ecosystem (optimized for CUDA 12.4)
+  - pytorch>=2.0.0
   - torchvision
   - torchaudio
-  - pytorch-lightning>=1.8.0
+  - pytorch-cuda=12.1
+  - pytorch-lightning>=2.0.0
   
   # PyTorch Geometric and related
   - torch-geometric>=2.2.0
