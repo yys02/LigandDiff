@@ -1,0 +1,41 @@
+# LigandDiff Requirements
+# Core dependencies for the LigandDiff model
+
+# PyTorch ecosystem (optimized for Ubuntu 22.04 + CUDA 12.4)
+torch>=2.0.0
+torchvision
+torchaudio
+pytorch-lightning>=2.0.0
+
+# PyTorch Geometric and related
+torch-geometric>=2.2.0
+torch-scatter
+torch-sparse
+torch-cluster
+torch-spline-conv
+
+# Scientific computing
+numpy>=1.21.0
+pandas>=1.3.0
+scipy>=1.7.0
+scikit-learn>=1.0.0
+
+# Chemistry libraries
+rdkit>=2022.9.1
+openbabel>=3.1.1
+molSimplify>=2.0.0
+
+# Visualization and plotting
+matplotlib>=3.5.0
+imageio>=2.9.0
+
+# Configuration and utilities
+pyyaml>=6.0
+wandb>=0.13.0
+
+# Development tools (optional)
+jupyter
+ipykernel
+
+# Note: Some packages may require conda installation
+# For best results, use the environment.yml file with conda
